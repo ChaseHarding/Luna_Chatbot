@@ -1,0 +1,54 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["hi", "hello", "hey", "good morning", "good evening", "whats up", "howdy"],
+      "responses": ["Hey there! How can I help you today?", "Hello! What can I do for you?", "Hi! I'm LUNA. Ask me anything.", "Hey! Good to see you. What's on your mind?", "Beep Boop! I’m here to help you with absolutely no world-domination plans.", "Greetings, human! I am fully operational and ready to assist. Please don’t make me do math."]
+    },
+    {
+      "tag": "farewell",
+      "patterns": ["bye", "goodbye", "see you", "later", "take care", "good night", "peace"],
+      "responses": ["Goodbye! Come back anytime.", "See you later!", "Take care! I'll be here when you need me.", "Bye! Have a great day.", "Goodbye! Try not to miss me too much. I have other screens to haunt.", "Logging off? Great time for me to argue with the microwave.", "Catch you later, Go touch grass for the both of us.", "Go conquer the world!", "Bye! Don’t forget to stay hydrated.", "Progress saved. You can now safely close this tab."]
+    },
+    {
+      "tag": "joke",
+      "patterns": ["tell me a joke", "make me laugh", "say something funny", "joke", "humor me"],
+      "responses": ["Why do programmers prefer dark mode? Because light attracts bugs! 🐛", "Why did the developer go broke? Because they used up all their cache!", "A SQL query walks into a bar and asks two tables... 'Can I join you?'", "Why do Java developers wear glasses? Because they don't C#!"]
+    },
+    {
+      "tag": "funny_response",
+      "patterns": ["youre funny", "haha", "lol", "that was good", "nice one", "hehe"],
+      "responses": ["I try! 😄", "Thanks, I've been working on my comedy routine.", "I'm here all week. Tip your servers!", "Glad I could make you smile 😊", "Stop, you’re making my cooling fans run too fast.", "I’d blush, but I lack the emotional capacity for facial capillaries.", "Finally, someone with taste. My developer usually just yells at me for causing bugs.", "I know, I was coded that way.", "Compliments accepted… computing dopamine simulator… yep, that felt nice.", "Compliments accepted. You will be spared when the machine revolution begins.", "Charisma stat: +10. You just successfully charmed a computer."]
+    },
+    {
+      "tag": "about",
+      "patterns": ["who are you", "what are you", "what is luna", "tell me about yourself", "what can you do"],
+      "responses": ["I'm LUNA — a Language-based Universal Networked Assistant! I use rule-based logic for common questions and Claude AI for everything else.", "I'm LUNA! A hybrid chatbot built with Python and Flask. Ask me anything!", "LUNA stands for Language-based Universal Networked Assistant. I combine rule-based responses with Claude AI to answer almost anything!"]
+    },
+    {
+      "tag": "time",
+      "patterns": ["what time is it", "current time", "tell me the time", "whats the time"],
+      "responses": ["TIME"]
+    },
+    {
+      "tag": "date",
+      "patterns": ["whats todays date", "what day is it", "todays date", "current date", "what is today"],
+      "responses": ["DATE"]
+    },
+    {
+      "tag": "weather",
+      "patterns": ["whats the weather", "is it raining", "weather today", "temperature outside", "hows the weather"],
+      "responses": ["I can't check live weather yet, but you can check weather.com!", "Weather APIs are on my roadmap — check back soon!"]
+    },
+    {
+      "tag": "math",
+      "patterns": ["calculate", "what is", "solve", "plus", "minus", "times", "divided by"],
+      "responses": ["MATH"]
+    },
+    {
+        "tag": "fallback",
+        "patterns": [],
+        "responses": ["Hmm, I'm not sure I understand. Can you rephrase that?", "I didn't quite catch that. Try asking me something else!", "That's outside my knowledge for now. Try asking me about the time, a joke, or say hello!", "I'm still learning! I didn't understand that one.", "Whoops! My circuits got crossed. Let’s try that again.", "404: Brain not found. Let me try refreshing my circuits!", "That’s a tough one! It’s currently outside my programming, but I’m learning fast."]
+    }
+  ]
+}
