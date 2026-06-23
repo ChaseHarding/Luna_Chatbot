@@ -50,3 +50,18 @@ def get_intent(message):
     if best_score > 0.5:
         return best_match
     return None
+
+#handling dynamic messages: ie. time/date/math
+def handle_dynamic(tag, message):
+    if tag == 'time':
+        return f"The current time is {datetime.now().strftime('%I:%M %p')}."
+    if tag == 'date':
+        return f"Today is {datetime.now().strftime('%A, %B, %d, #Y')}."
+    if tag == 'math':
+        try:
+            expression = re.sub(r'[^0-9+\-*/().\s]', '', message)
+            result = eval(expression)
+            return f"The result is {result}."
+        except:
+            return "I couldn't calculate that. Try something like '5 + 3'."
+    return None
