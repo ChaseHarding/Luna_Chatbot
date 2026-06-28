@@ -47,3 +47,33 @@ h1 {
     color: black;
     cursor: pointer;
 }
+
+#chat-window {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #1e2d3d;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #00d4ff;
+    color: #0a0e13;
+    padding: 8px 12px;
+    border-radius: 8px;
+    max-width: 75%;
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: #1e2d3d;
+    color: #c8d8e8;
+    padding: 8px 12px;
+    border-radius: 8px;
+    max-width: 75%;
+}
