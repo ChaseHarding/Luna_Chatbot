@@ -1,6 +1,6 @@
-const chatWindow = document.getElementById('chat_window');
-const userInput = document.getElementById('user_input');
-const sendBtn = document.getElementById('send_btn');
+const chatWindow = document.getElementById('chat-window');
+const userInput = document.getElementById('user-input');
+const sendBtn = document.getElementById('send-btn');
 
 function addMessage (text, sender) {
     const message = document.createElement('div');

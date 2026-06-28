@@ -83,7 +83,7 @@ def chat():
         if dynamic: 
             response = dynamic
         else: 
-            response = random.choice(intent['repsonses'])
+            response = random.choice(intent['responses'])
     else:
             fallback_intent = None
             for i in data['intents']:
