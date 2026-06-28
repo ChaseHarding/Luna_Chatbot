@@ -65,3 +65,32 @@ def handle_dynamic(tag, message):
         except:
             return "I couldn't calculate that. Try something like '5 + 3'."
     return None
+
+# actual web server wow
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    body = request.get_json()
+    message = body.get('message', '')
+
+    intent = get_intent(message)
+
+    if intent:
+        dynamic = handle_dynamic(intent['tag'], message)
+        if dynamic: 
+            response = dynamic
+        else: 
+            response = random.choice(intent['repsonse'])
+    else:
+            fallback_intent = None
+            for i in data['intents']:
+                if i ['tag'] == 'fallback':
+                    fallback_intent = i
+                    break
+            response = random.choice(fallback_intent['response'])
+
+    return jsonify({'response': response})
+
