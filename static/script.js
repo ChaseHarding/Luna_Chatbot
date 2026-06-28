@@ -26,3 +26,9 @@ async function sendMessage() {
     const data = await res.json();
     addMessage(data.response, 'bot-message');
 }
+
+sendBtn.addEventListener('click', sendMessage);
+
+userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+});
