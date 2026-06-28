@@ -9,3 +9,20 @@ function addMessage (text, sender) {
     chatWindow.appendChild(message);
     chatWindow.scrollTop = chatWindow.scrollHeight;
 }
+
+async function sendMessage() {
+    const text = userInput.value.trim();
+    if (!text) return;
+
+    addMessage(text, 'user-message');
+    userInput.value = '';
+
+    const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content_Type': 'application/json '},
+        body: JSON.stringify({ message: text })
+    });
+
+    const data = await res.json();
+    addMessage(data.response, 'bot-message');
+}
