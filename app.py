@@ -56,7 +56,7 @@ def handle_dynamic(tag, message):
     if tag == 'time':
         return f"The current time is {datetime.now().strftime('%I:%M %p')}."
     if tag == 'date':
-        return f"Today is {datetime.now().strftime('%A, %B, %d, #Y')}."
+        return f"Today is {datetime.now().strftime('%A, %B, %d, %Y')}."
     if tag == 'math':
         try:
             expression = re.sub(r'[^0-9+\-*/().\s]', '', message)
@@ -83,14 +83,17 @@ def chat():
         if dynamic: 
             response = dynamic
         else: 
-            response = random.choice(intent['repsonse'])
+            response = random.choice(intent['repsonses'])
     else:
             fallback_intent = None
             for i in data['intents']:
                 if i ['tag'] == 'fallback':
                     fallback_intent = i
                     break
-            response = random.choice(fallback_intent['response'])
+            response = random.choice(fallback_intent['responses'])
 
     return jsonify({'response': response})
 
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
