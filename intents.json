@@ -42,7 +42,7 @@
     },
     {
       "tag": "math",
-      "patterns": ["calculate", "what is", "solve", "plus", "minus", "times", "divided by"],
+      "patterns": ["calculate", "what is", "solve", "plus", "minus", "times", "divided by", "raised to", "to the power of", "modulo", "square root"],
       "responses": ["MATH"]
     },
     {

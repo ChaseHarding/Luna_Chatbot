@@ -29,7 +29,7 @@ def stem(word):
 def get_intent(message):
 
     #detect math expressions without the pattern words present
-    math_pattern = r'-?\d+(?:\.\d+)?\s*[+\-*/]\s*-?\d+(?:\.\d+)?'
+    math_pattern = r'-?\d+(?:\.\d+)?\s*[+\-*/^%]\s*-?\d+(?:\.\d+)?'
     if re.search(math_pattern, message):
         for intent in data['intents']:
             if intent['tag'] == 'math':
@@ -73,9 +73,14 @@ def handle_dynamic(tag, message):
             cleaned = cleaned.replace('times', '*')
             cleaned = cleaned.replace('plus', '+')
             cleaned = cleaned.replace('minus', '-')
+            cleaned = cleaned.replace('squared', '**2')
+            cleaned = cleaned.replace('cubed', '**3')
+            cleaned = cleaned.replace('^', '**')
+            print(f"After ^ replace: {cleaned}")
             cleaned = re.sub(r'\bx\b', '*', cleaned)
+            cleaned = re.sub(r'sqrt\s*\(?\s*(\d+)\s*\)?', r'math_module.sqrt(\1)', cleaned)
 
-            expression = re.sub(r'[^0-9+\-*/().\s]', '', cleaned)
+            expression = re.sub(r'[^0-9+\-*/().%\s]', '', cleaned)
 
             print(f"Evaluating: {expression}")
 
