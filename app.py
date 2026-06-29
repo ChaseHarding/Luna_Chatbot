@@ -95,6 +95,12 @@ def handle_dynamic(tag, message):
             return "You can't divide by zero, silly."
         except Exception:
             return "I couldn't calculate that. Try something like '5 + 3'."
+    if tag == 'recall_last':
+        user_messages = [m for m in conversation_history if m['role'] == 'user']
+        if len(user_messages) >= 2:
+            last_user_message = user_messages[-2]['content']
+            return f"You just said: \"{last_user_message}\""
+        return "You haven't said anything yet!"
     return None
 
 # actual web server wow
