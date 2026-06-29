@@ -19,6 +19,10 @@ stemmer = PorterStemmer()
 with open('intents.json') as f:
     data = json.load(f)
 
+# In-memory conversation storage
+# key = session_id, value = list of past messages
+conversation_history = []
+
 def tokenize(text):
     return nltk.word_tokenize(text.lower())
 
@@ -103,6 +107,9 @@ def chat():
     body = request.get_json()
     message = body.get('message', '')
 
+    #storing conversation history per session
+    conversation_history.append({'role': 'user', 'content': message})
+
     intent = get_intent(message)
 
     if intent:
@@ -118,8 +125,12 @@ def chat():
                     fallback_intent = i
                     break
             response = random.choice(fallback_intent['responses'])
-
+    conversation_history.append({"role": "bot", "content": response})
     return jsonify({'response': response})
+
+@app.route('/history')
+def history():
+    return jsonify(conversation_history)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
