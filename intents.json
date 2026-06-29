@@ -49,6 +49,11 @@
         "tag": "fallback",
         "patterns": [],
         "responses": ["Hmm, I'm not sure I understand. Can you rephrase that?", "I didn't quite catch that. Try asking me something else!", "That's outside my knowledge for now. Try asking me about the time, a joke, or say hello!", "I'm still learning! I didn't understand that one.", "Whoops! My circuits got crossed. Let’s try that again.", "404: Brain not found. Let me try refreshing my circuits!", "That’s a tough one! It’s currently outside my programming, but I’m learning fast."]
+    },
+    {
+        "tag": "recall_last",
+        "patterns": ["what did i just say", "what did i say before", "repeat what i said"],
+        "responses": ["REPEAT_LAST"]
     }
   ]
 }
