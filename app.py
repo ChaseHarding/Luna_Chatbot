@@ -27,6 +27,14 @@ def stem(word):
 
 #matching the logic 
 def get_intent(message):
+
+    #detect math expressions without the pattern words present
+    math_pattern = r'-?\d+(?:\.\d+)?\s*[+\-*/]\s*-?\d+(?:\.\d+)?'
+    if re.search(math_pattern, message):
+        for intent in data['intents']:
+            if intent['tag'] == 'math':
+                return intent
+
     message_words = [stem(w) for w in tokenize(message)]
     best_match = None 
     best_score = 0
