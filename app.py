@@ -59,10 +59,24 @@ def handle_dynamic(tag, message):
         return f"Today is {datetime.now().strftime('%A, %B, %d, %Y')}."
     if tag == 'math':
         try:
-            expression = re.sub(r'[^0-9+\-*/().\s]', '', message)
+            cleaned = message.lower()
+
+            cleaned = cleaned.replace('divided by', '/')
+            cleaned = cleaned.replace('times', '*')
+            cleaned = cleaned.replace('plus', '+')
+            cleaned = cleaned.replace('minus', '-')
+            cleaned = re.sub(r'\bx\b', '*', cleaned)
+
+            expression = re.sub(r'[^0-9+\-*/().\s]', '', cleaned)
+
+            print(f"Evaluating: {expression}")
+
             result = eval(expression)
             return f"The result is {result}."
-        except:
+        
+        except ZeroDivisionError:
+            return "You can't divide by zero, silly."
+        except Exception:
             return "I couldn't calculate that. Try something like '5 + 3'."
     return None
 
