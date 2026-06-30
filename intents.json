@@ -54,6 +54,11 @@
         "tag": "recall_last",
         "patterns": ["what did i just say", "what did i say before", "repeat what i said"],
         "responses": ["REPEAT_LAST"]
+    },
+    {
+        "tag": "coin_flip",
+        "patterns": ["flip a coin", "coin flip", "heads or tails", "flip coin"],
+        "responses": ["COIN_FLIP"]
     }
   ]
 }
