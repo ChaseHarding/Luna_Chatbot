@@ -65,6 +65,12 @@ def get_intent(message):
 
 #handling dynamic messages: ie. time/date/math
 def handle_dynamic(tag, message):
+    if tag == 'coin_flip':
+        result = random.choice(['Heads', 'Tails'])
+        return f"🪙 {result}!"
+    if tag == 'roll_die':
+        result = random.randint(1, 6)
+        return f"🎲 You rolled a {result}!"
     if tag == 'time':
         return f"The current time is {datetime.now().strftime('%I:%M %p')}."
     if tag == 'date':

@@ -59,6 +59,11 @@
         "tag": "coin_flip",
         "patterns": ["flip a coin", "coin flip", "heads or tails", "flip coin"],
         "responses": ["COIN_FLIP"]
+    },
+    {
+        "tag": "roll_die",
+        "patterns": ["roll a die", "roll dice", "roll the dice", "dice roll"],
+        "responses": ["ROLL_DIE"]
     }
   ]
 }
