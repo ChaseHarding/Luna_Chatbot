@@ -18,7 +18,7 @@ async function sendMessage() {
     userInput.value = '';
 
     // typing indicator, thinking animation
-    const typing = document.getElementById('div');
+    const typing = document.createElement('div');
     typing.className = 'typing-indicator';
     typing.innerHTML = '<span></span><span></span><span></span>';
     chatWindow.appendChild(typing);
@@ -30,11 +30,13 @@ async function sendMessage() {
         body: JSON.stringify({ message: text })
     });
 
-    const data = await res.json();
+    const [data] = await Promise.all([
+        res.json(),
+        new Promise(resolve => setTimeout(resolve, 1000))
+    ]);
 
     //remove the animation before showing the message
     chatWindow.removeChild(typing);
-
     addMessage(data.response, 'bot-message');
 }
 
