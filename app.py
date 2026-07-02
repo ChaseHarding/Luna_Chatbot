@@ -25,7 +25,9 @@ conversation_history = []
 
 #function to normalize inputs from "heyyyy" to "heyy"
 def normalize(text):
-    return re.sub(r'(.)\1{2}', r'1{1}', text)
+    return re.sub(r'(.)\1{2,}', r'\1\1', text)
+ #   print(f"normalize: '{text}' → '{result}'")
+ #   return result
 
 def tokenize(text):
     return nltk.word_tokenize(normalize(text.lower()))
