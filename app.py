@@ -71,6 +71,37 @@ def get_intent(message):
         return best_match
     return None
 
+# fuzzy matching (third pass of user input)
+def get_intent_fuzzy(message):
+    message_words = tokenize(message)
+    best_match = None 
+    best_score = 0
+
+    for intent in data['intents']:
+        if not intent['patterns']:
+            continue
+        for pattern in intent['patterns']:
+            pattern_words = tokenize(pattern)
+            total_score = 0
+            matches = 0
+            for p in pattern_words:
+                #find best fuzzy match
+                word_scores = [fuzz.ratio(p, m_word) for m_word in message_words]
+                if word_scores:
+                    top_score = max(word_scores)
+                    if top_score > 70:
+                        total_score += top_score
+                        matches += 1
+            if matches > 0:
+                score = (total_score / matches) / 100
+                if score > best_score:
+                    best_score = score
+                    best_match = intent
+
+    if best_score > 0.8:
+        return best_match
+    return None
+
 #handling dynamic messages: ie. time/date/math
 def handle_dynamic(tag, message):
     if tag == 'coin_flip':
@@ -131,6 +162,12 @@ def chat():
     conversation_history.append({'role': 'user', 'content': message})
 
     intent = get_intent(message)
+
+    if not intent:
+        print("Pass 1 failed, trying fuzzy match...")
+        intent = get_intent_fuzzy(message)
+        if intent:
+            print(f"Fuzzy matched: {intent['tag']}")
 
     if intent:
         dynamic = handle_dynamic(intent['tag'], message)
