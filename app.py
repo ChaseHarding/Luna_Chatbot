@@ -6,6 +6,8 @@ import re
 import os
 import nltk
 from nltk.stem import PorterStemmer
+from rapidfuzz import fuzz
+
 
 # pre trained model splits sentences and quiet=True will prevent any unecessary printing to the terminal when downloading
 nltk.download('punkt', quiet=True)
