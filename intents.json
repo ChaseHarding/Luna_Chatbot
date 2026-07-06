@@ -165,6 +165,13 @@
       "responses": [
             "ROLL_DIE"
         ]
+    },
+    {
+        "tag": "random_number",
+        "patterns": ["give me a random number", "pick a number", "random number", "generate a number", "surprise me with a number"],
+        "responses": [
+                "RANDOM_NUMBER"
+         ]
     }
   ]
 }

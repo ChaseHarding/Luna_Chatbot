@@ -110,6 +110,9 @@ def handle_dynamic(tag, message):
     if tag == 'roll_die':
         result = random.randint(1, 6)
         return f"🎲 You rolled a {result}!"
+    if tag == 'random_number':
+        result = random.randint(1, 1000)
+        return f"Your random number is {result}!"
     if tag == 'time':
         return f"The current time is {datetime.now().strftime('%I:%M %p')}."
     if tag == 'date':
