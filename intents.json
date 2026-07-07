@@ -172,6 +172,13 @@
         "responses": [
                 "RANDOM_NUMBER"
          ]
+    },
+    {
+        "tag": "temperature",
+        "patterns": ["convert temperature", "celsius to fahrenheit", "fahrenheit to celsius", "celsius to kelvin", "kelvin to celsius", "fahrenheit to kelvin", "kelvin to fahrenheit", "temperature conversion", "how many fahrenheit", "how many celsius", "how many kelvin"],
+        "responses": [
+              "TEMPERATURE"
+        ]
     }
   ]
 }

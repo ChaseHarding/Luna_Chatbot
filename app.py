@@ -111,8 +111,17 @@ def handle_dynamic(tag, message):
         result = random.randint(1, 6)
         return f"🎲 You rolled a {result}!"
     if tag == 'random_number':
-        result = random.randint(1, 1000)
-        return f"Your random number is {result}!"
+        numbers = re.findall(r'\d+', message)
+        if len(numbers) >= 2:
+            low = int(numbers[0])
+            high = int(numbers[1])
+            if low > high:
+                low, high = high, low
+            number = random.randint(low, high)
+            return f"Your random number is {number}!"
+        else: 
+            number = random.randint(1, 100)
+            return f"Your randome number is {number}!"
     if tag == 'time':
         return f"The current time is {datetime.now().strftime('%I:%M %p')}."
     if tag == 'date':
