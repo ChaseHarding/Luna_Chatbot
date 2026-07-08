@@ -175,7 +175,7 @@
     },
     {
         "tag": "temperature",
-        "patterns": ["convert temperature", "celsius to fahrenheit", "fahrenheit to celsius", "celsius to kelvin", "kelvin to celsius", "fahrenheit to kelvin", "kelvin to fahrenheit", "temperature conversion", "how many fahrenheit", "how many celsius", "how many kelvin"],
+        "patterns": ["convert temperature", "celsius to fahrenheit", "fahrenheit to celsius", "celsius to kelvin", "kelvin to celsius", "fahrenheit to kelvin", "kelvin to fahrenheit", "temperature conversion","what is fahrenheit in celsius", "what is celsius in fahrenheit", "what is kelvin in celsius", "how many fahrenheit", "how many celsius", "how many kelvin"],
         "responses": [
               "TEMPERATURE"
         ]

@@ -121,7 +121,7 @@ def handle_dynamic(tag, message):
             return f"Your random number is {number}!"
         else: 
             number = random.randint(1, 100)
-            return f"Your randome number is {number}!"
+            return f"Your random number is {number}!"
     if tag == 'time':
         return f"The current time is {datetime.now().strftime('%I:%M %p')}."
     if tag == 'date':
@@ -152,6 +152,46 @@ def handle_dynamic(tag, message):
             return "You can't divide by zero, silly."
         except Exception:
             return "I couldn't calculate that. Try something like '5 + 3'."
+    if tag == 'temperature':
+        numbers = re.findall(r'-?\d+\.?\d*', message)
+        if not numbers:
+            return "Please provide me a number to convert! For example: 'convert 100 celsius to fahrenheit'"
+        value = float(numbers[0])
+        msg = message.lower()
+        #detect users units
+        found_units = []
+        for unit in ['celsius', 'fahrenheit', 'kelvin']:
+            pos = msg.find(unit)
+            if pos != -1:
+                found_units.append((pos, unit))
+
+        found_units.sort()
+        # sorts by the first element of each tuple (the position number)
+        found_units = [u[1] for u in found_units]
+
+        if len(found_units) < 2:
+            return "I need you to specify both units for this to work. For example: 'convert 100 celsius to fahrenheit'"
+        
+        from_unit = found_units[0]
+        to_unit = found_units[1]
+
+        #convert to celsius first 
+        if from_unit == 'fahrenheit':
+            celsius = (value - 32) * 5/9
+        elif from_unit == 'kelvin':
+            celsius = value - 273.15
+        else:
+            celsius = value
+
+        # convert from celsius to target
+        if to_unit == 'fahrenheit':
+            result = (celsius * 9/5) + 32
+        elif to_unit == 'kelvin':
+            result = celsius + 273.15
+        else:
+            result = celsius
+
+        return f"🌡️ {value}{from_unit[0].upper()} = {round(result, 2)}{to_unit[0].upper()}"
     if tag == 'recall_last':
         user_messages = [m for m in conversation_history if m['role'] == 'user']
         if len(user_messages) >= 2:
@@ -170,8 +210,17 @@ def chat():
     body = request.get_json()
     message = body.get('message', '')
 
-    #storing conversation history per session
+    print(f"Message received: {message}")
+
     conversation_history.append({'role': 'user', 'content': message})
+
+    # check for temperature keywords before intent matching
+    temp_keywords = ['celsius', 'fahrenheit', 'kelvin']
+    if any(keyword in message.lower() for keyword in temp_keywords):
+        response = handle_dynamic('temperature', message)
+        #storing conversation history per session
+        conversation_history.append({'role': 'bot', 'content': response})
+        return jsonify({'response': response})
 
     intent = get_intent(message)
 
